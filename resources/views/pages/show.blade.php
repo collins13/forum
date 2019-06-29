@@ -14,14 +14,15 @@
         </div>
           <div class="blog-post-body">
             <h2><a href="post.html">{{$thread->subject}}</a></h2>
-            <div class="post-meta"><span>by <a href="#">Jamie Mooze</a></span>/<span><i class="fa fa-clock-o"></i>March 14, 2015</span>/<span><i class="fa fa-comment-o"></i> <a href="#">343</a></span></div>
-            <p>{{$thread->body}}</p>
+            <div class="post-meta"><span>by <a href="#">{{$thread->user->name}}</a></span>/<span><i class="fa fa-clock-o"></i>{{$thread->created_at}}</span>/<span><i class="fa fa-comment-o"></i> <a href="#">343</a></span></div>
+            <p>{!!\Michelf\Markdown::defaultTransform($thread->body)!!}</p>
           </div>
           <div class="row">
+            @if(Auth::user());
             <div class="col-md-6">
                 <a href="{{route('pages.edit',$thread->id)}}" class="ui button orange">Edit</a>
             </div>
-           
+
              <div class="col-md-6">
                 <form action="{{route('form.destroy',$thread->id)}}" method="POST">
                     {{ csrf_field() }}
@@ -29,9 +30,17 @@
                     <input type="submit" class="ui button negative" value="Delete">
                   </form>
              </div>
-            
+            @else
+
+            @endif
+
           </div>
-      
+          <div class="ui buttons">
+              <a href="/" class="ui labeled red icon button">
+                <i class="left chevron icon"></i>
+                Back
+              </a>
+            </div>
       </article>
       <!-- article -->
     </div>
@@ -63,40 +72,6 @@
             </div>
           </article>
 
-        </div>
-      </div>
-      <!-- sidebar-widget -->
-      <div class="sidebar-widget">
-        <h3 class="sidebar-title">Socials</h3>
-        <div class="widget-container">
-          <div class="widget-socials">
-            <button class="ui facebook button">
-              <i class="facebook icon"></i>
-              Facebook
-            </button>
-            <button class="ui twitter button">
-              <i class="twitter icon"></i>
-              twitter
-            </button>
-            <hr>
-            <button class="ui instagram button">
-              <i class="instagram icon"></i>
-              instagram
-            </button>
-            <button class="ui google plus button">
-              <i class="google plus icon"></i>
-              google plus
-            </button>
-            <hr>
-            <button class="ui dribble button">
-              <i class="dribble icon"></i>
-              dribble
-            </button>
-            <button class="ui reddit button">
-              <i class="reddit icon"></i>
-              reddit
-            </button>
-          </div>
         </div>
       </div>
       <!-- sidebar-widget -->
