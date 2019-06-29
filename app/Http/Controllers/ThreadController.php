@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class ThreadController extends Controller
 {
+    public function _construct(){
+         $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +17,9 @@ class ThreadController extends Controller
      */
     public function index()
     {
+        //$user_id = auth()->user('id');
         $threads = Thread::orderBy('subject', 'desc')->paginate(5);
-        return view('welcome', compact('threads'));
+        return view('welcome')->with('threads', $threads);
     }
 
     /**
@@ -44,6 +48,7 @@ class ThreadController extends Controller
       $post = new Thread();
       $post->subject = $request->input('subject');
       $post->type = $request->input('type');
+      $post->user_id = auth()->user()->id;
       $post->body = $request->input('body');
 
       $post->save();
@@ -94,8 +99,9 @@ class ThreadController extends Controller
           $post = Thread::find($id);
           $post->subject = $request->input('subject');
           $post->type = $request->input('type');
+          $post->user_id = auth()->user()->id;
           $post->body = $request->input('body');
-    
+
           $post->save();
           return redirect()->back()->with('success', 'post inserted updated');
     }
