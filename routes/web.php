@@ -22,3 +22,7 @@ Route::post('store', 'ThreadController@store')->name('form.store');
 Route::post('destroy/{id}', 'ThreadController@destroy')->name('form.destroy');
 Route::post('/update/{id}', 'ThreadController@update')->name('form.update');
 
+Route::resource('admin/permission', 'Admin\\PermissionController');
+
+Route::resource('admin/role', 'Admin\\RoleController');
+Route::resource('admin/role', 'Admin\\RoleController');
