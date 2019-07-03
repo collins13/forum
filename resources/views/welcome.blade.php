@@ -36,7 +36,7 @@
         @foreach ($threads as $thread)
           <div class="blog-post-body">
             <h2><a href="post.html">{{$thread->subject}}</a></h2>
-          <div class="post-meta"><span>by <a href="#">{{$thread->user->name}}</a></span>/<span><i class="fa fa-clock-o"></i>{{$thread->created_at}}</span>/<span><i class="fa fa-comment-o"></i> <a href="#">343</a></span></div>
+          <div class="post-meta"><span>by <a href="#">{{$thread->user->name}}</a></span>/<span><i class="fa fa-clock-o"></i>{{$thread->created_at->diffForHumans()}}</span>/<span><i class="fa fa-comment-o"></i> <a href="#">343</a></span></div>
             <p>{{str_limit($thread->body,100)}}</p>
             <div class="read-more"><a href="{{route('pages.show',$thread->id)}}" class="ui labeled icon button">
                 <i class="right chevron icon"></i>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 
 use App\Thread;
 use Illuminate\Http\Request;
@@ -17,9 +18,10 @@ class ThreadController extends Controller
      */
     public function index()
     {
+      $date = new Carbon;
         //$user_id = auth()->user('id');
         $threads = Thread::orderBy('subject', 'desc')->paginate(5);
-        return view('welcome')->with('threads', $threads);
+        return view('welcome')->with(['threads'=>$threads, 'date'=>$date ]);
     }
 
     /**
