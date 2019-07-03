@@ -8,14 +8,19 @@
   <div class="row">
    <div class="col-md-8 col-md-offset-2">
      <header>
-       <a href="index.html"><img src="images/forum-logo-icon-1.jpg" style="height:200px; float:left"></a>
+       <a href="index.html"><img src="images/forum.jpg" style="height:200px; float:left"></a>
      </header>
    </div>
    <div class="col-md-4 col-md-offset-2">
+     @if(Auth::user())
     <a href="/create" class="ui button positive">
       <i class="edit outline icon"></i>
       Create Content
     </a><hr>
+    @else
+
+
+    @endif
    </div>
 
   </div>
@@ -31,9 +36,11 @@
         @foreach ($threads as $thread)
           <div class="blog-post-body">
             <h2><a href="post.html">{{$thread->subject}}</a></h2>
-            <div class="post-meta"><span>by <a href="#">Jamie Mooze</a></span>/<span><i class="fa fa-clock-o"></i>March 14, 2015</span>/<span><i class="fa fa-comment-o"></i> <a href="#">343</a></span></div>
+          <div class="post-meta"><span>by <a href="#">{{$thread->user->name}}</a></span>/<span><i class="fa fa-clock-o"></i>{{$thread->created_at}}</span>/<span><i class="fa fa-comment-o"></i> <a href="#">343</a></span></div>
             <p>{{str_limit($thread->body,100)}}</p>
-            <div class="read-more"><a href="{{route('pages.show',$thread->id)}}">Continue Reading</a></div>
+            <div class="read-more"><a href="{{route('pages.show',$thread->id)}}" class="ui labeled icon button">
+                <i class="right chevron icon"></i>
+              Continue Reading</a></div>
           </div>
         @endforeach
         {{$threads->links()}}
@@ -70,40 +77,6 @@
             </div>
           </article>
 
-        </div>
-      </div>
-      <!-- sidebar-widget -->
-      <div class="sidebar-widget">
-        <h3 class="sidebar-title">Socials</h3>
-        <div class="widget-container">
-          <div class="widget-socials">
-            <button class="ui facebook button">
-              <i class="facebook icon"></i>
-              Facebook
-            </button>
-            <button class="ui twitter button">
-              <i class="twitter icon"></i>
-              twitter
-            </button>
-            <hr>
-            <button class="ui instagram button">
-              <i class="instagram icon"></i>
-              instagram
-            </button>
-            <button class="ui google plus button">
-              <i class="google plus icon"></i>
-              google plus
-            </button>
-            <hr>
-            <button class="ui dribble button">
-              <i class="dribble icon"></i>
-              dribble
-            </button>
-            <button class="ui reddit button">
-              <i class="reddit icon"></i>
-              reddit
-            </button>
-          </div>
         </div>
       </div>
       <!-- sidebar-widget -->

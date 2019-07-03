@@ -24,11 +24,11 @@
            CKEDITOR.replace( 'ckeditor' );
        </script>
         </div>
-        <input type="submit" value="submit" class="btn btn-success">
+        <input type="submit" value="submit" class="ui inverted primary button">
+        <a href="/" class="ui inverted red button">Go back</a>
     </form>
-    <a href="/">Go back</a>
-
     </div>
+    <br>
 
   </div>
 
